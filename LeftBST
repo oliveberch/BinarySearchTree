@@ -1,0 +1,42 @@
+class RightBST {
+
+    // Given Node node
+    static class node {
+        int key;
+        node left, right;
+    };
+
+    // Function to create a new BST node
+    static node newNode(int item) {
+        node temp = new node();
+        temp.key = item;
+        temp.left = temp.right = null;
+        return temp;
+    }
+    // Function to print left view of
+    // binary tree
+    static void leftViewUtil(node root, int level, int max_level)
+    {
+        // Base Case
+        if (root == null)
+            return;
+ 
+        // If this is the first node
+        // of its level
+        if (max_level < level) {
+            System.out.print(" " + root.key);
+            max_level = level;
+        }
+ 
+        // Recur for left
+        leftViewUtil(root.left, level + 1, max_level);
+        //leftViewUtil(root.right, level + 1, max_level);
+    }
+ 
+    // Wrapper over leftViewUtil()
+    static void leftView(node root)
+    {
+        int max_level = 0;
+        leftViewUtil(root, 1, max_level);
+    }
+}
